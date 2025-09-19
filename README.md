@@ -23,7 +23,8 @@ pip install -e .
 
 
 
-
+## Acknowledgements
+The project was built on amazing open-source repositories: CLAM. We thank the authors and developers for their contributions.
 
 
 ## Issues
