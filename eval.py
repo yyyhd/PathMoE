@@ -14,7 +14,7 @@ from utils.eval_utils import *
 
 # Training settings
 parser = argparse.ArgumentParser(description='CLAM Evaluation Script')
-parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/result/features/virchow2',
+parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/Evaluation',
                     help='data directory')
 parser.add_argument('--results_dir', type=str, default='/home/hoo/projects/zzhuo/CLAM_master/results',
                     help='relative path to results folder, i.e. '+
