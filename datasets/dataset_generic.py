@@ -342,12 +342,8 @@ class Generic_MIL_Dataset(Generic_WSI_Classification_Dataset):
 			data_dir = self.data_dir
 		
 		if self.data_dir:
-			##############桂林###################
-			# if str(slide_id)[0]=='2':
-			# 	slide_id = '0' + slide_id
-			#####################################
-			# features1111 = torch.load('/media/data/cyq/WSI/CLAM-master/features/benyuan/512/res_34/yewo/pt_files_ms1/2220105.pt')
-			# print("qqqqqqqqqqqqq", features1111)
+
+
 			full_path1 = os.path.join(data_dir, 'pt_files', '{}-ER.pt'.format(slide_id))
 			full_path2 = os.path.join(data_dir, 'pt_files', '{}-PR.pt'.format(slide_id))
 			full_path3 = os.path.join(data_dir, 'pt_files', '{}-KI67.pt'.format(slide_id))
