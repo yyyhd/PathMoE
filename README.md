@@ -22,13 +22,8 @@ pip install -e .
 ```
 ## Model Download
 
-The MUSK models can be accessed from [HuggingFace Hub](https://huggingface.co/zzhuo-cs/PathMoE/pytorch_model.pt).
+The MUSK models can be accessed from [HuggingFace Hub](https://huggingface.co/zzhuo-cs/PathMoE/resolve/mainpytorch_model.pt).
 
-You need to agree to the terms to access the models and login with your HuggingFace write token:
-```python
-from huggingface_hub import login
-login(<huggingface write token>)
-```
 
 
 ## evaluation indicator
