@@ -8,7 +8,7 @@ Neoadjuvant therapy efficacy assessment is critical for prognostic evaluation an
 
 First clone the repo and cd into the directory:
 ```shell
-git clone [https://github.com/lilab-stanford/MUSK](https://github.com/yyyhd/PathMoE)
+git clone https://github.com/yyyhd/PathMoE
 cd PathMoE
 ```
 
