@@ -47,7 +47,7 @@ class Accuracy_Logger(object):
         
         return acc, correct, count
 
-# 早停策略
+
 class EarlyStopping:
     """Early stops the training if validation loss doesn't improve after a given patience."""
     def __init__(self, patience=25, stop_epoch=40, verbose=True):
@@ -96,9 +96,9 @@ def train(datasets, cur, args):
     """
         train for a single fold
     """
-    ############################开始训练#################################
+
     print('\nTraining Fold {}!'.format(cur))
-    #########定义好存放训练验证结果的文件夹#########
+
     writer_dir = os.path.join(args.results_dir, str(cur))
     if not os.path.isdir(writer_dir):
         os.mkdir(writer_dir)
@@ -110,7 +110,6 @@ def train(datasets, cur, args):
     else:
         writer = None
 
-    ##############加载数据集###############
     print('\nInit train/val/test splits...', end=' ')
     train_split, val_split, test_split = datasets
     save_splits(datasets, ['train', 'val', 'test'], os.path.join(args.results_dir, 'splits_{}.csv'.format(cur)))
@@ -118,7 +117,7 @@ def train(datasets, cur, args):
     print("Training on {} samples".format(len(train_split)))
     print("Validating on {} samples".format(len(val_split)))
     print("Testing on {} samples".format(len(test_split)))
-    #############训练损失定义#############
+
     print('\nInit loss function...', end=' ')
     if args.bag_loss == 'svm':
         from topk.svm import SmoothTop1SVM
@@ -128,16 +127,16 @@ def train(datasets, cur, args):
     else:
         loss_fn = nn.CrossEntropyLoss()
     print('Done!')
-    ################加载模型##############
+
     print('\nInit Model...', end=' ')
     model_dict = {"dropout": args.drop_out, 'n_classes': args.n_classes}
 
     if args.model_size is not None and args.model_type != 'mil':
         model_dict.update({"size_arg": args.model_size})
 
-    if args.model_type in ['clam', 'PathMoE']:  # 可选：sb为单分支，mb为多分支
+    if args.model_type in ['clam', 'PathMoE']:  
 
-        if args.B > 0:  # B为集成的patch数量
+        if args.B > 0:  
             model_dict.update({'k_sample': args.B})
 
         if args.inst_loss == 'svm':
@@ -157,12 +156,12 @@ def train(datasets, cur, args):
 
   
 
-    model.relocate()  # 保存模型
+    model.relocate()  
     model = model.to(device)
     print('Done!')
     print_network(model)
 
-    ##############初始化参数##############
+
     print('\nInit optimizer ...', end=' ')
     optimizer = get_optim(model, args)
     print('Done!')
@@ -184,7 +183,7 @@ def train(datasets, cur, args):
         early_stopping = None
     print('Done!')
     i = 0
-    ###########开始每一轮训练###################
+
     for epoch in range(args.max_epochs):
 
         i = i + 1
