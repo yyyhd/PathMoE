@@ -37,7 +37,7 @@ parser.add_argument('--k_end', type=int, default=-1, help='end fold (default: -1
 parser.add_argument('--fold', type=int, default=-1, help='single fold to evaluate')
 parser.add_argument('--micro_average', action='store_true', default=False, 
                     help='use micro_average instead of macro_avearge for multiclass AUC')
-parser.add_argument('--split', type=str, choices=['train', 'val', 'test', 'all'], default='train')
+parser.add_argument('--split', type=str, choices=['train', 'val', 'test', 'all'], default='test')
 
 parser.add_argument('--task', type=str, default='task_1_pcr_vs_no')
 args = parser.parse_args()
