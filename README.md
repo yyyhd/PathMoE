@@ -21,7 +21,10 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-
+## evaluation indicator
+```
+python eval.py
+```
 
 ## Acknowledgements
 The project was built on amazing open-source repositories: CLAM. We thank the authors and developers for their contributions.
