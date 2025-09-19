@@ -20,15 +20,7 @@ import openslide
 import timm
 import torchvision
 from torchvision import transforms
-# from timm.data import resolve_data_config
-# from timm.data.transforms_factory import create_transform
-# # from timm.layers import SwiGLUPacked
 
-# from timm.models.vision_transformer import VisionTransformer
-# from timm.models._builder import build_model_with_cfg
-
-# from timm.models.vision_transformer import _cfg
-# # from timm.layers import SwiGLUPacked
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 
