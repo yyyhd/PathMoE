@@ -20,3 +20,14 @@ pip install --upgrade pip
 pip install -r requirements.txt
 pip install -e .
 ```
+
+
+
+
+
+
+## Issues
+Please open new threads or address questions to maoning@pku.edu.cn or sen.yang.scu@gmail.com
+
+## License
+This model may only be used for non-commercial, academic research purposes with proper attribution. Any commercial use, sale, or other monetization of the MUSK model and its derivatives is prohibited and requires prior approval.
