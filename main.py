@@ -23,7 +23,7 @@ def main(args):
     if not os.path.isdir(args.results_dir):
         os.mkdir(args.results_dir)
 
-    # 设置从第几折开始训练
+
     if args.k_start == -1:
         start = 0
     else:
@@ -33,17 +33,16 @@ def main(args):
     else:
         end = args.k_end
 
-    # 记录auc
+
     all_test_auc = []
     all_val_auc = []
     all_test_acc = []
     all_val_acc = []
 
-    # 每一折的训练
+
     folds = np.arange(start, end)
     for i in folds:
 
-        # 读取数据集
         seed_torch(args.seed)
         train_dataset, val_dataset, test_dataset = dataset.return_splits(from_id=False,
                 csv_path='{}/splits_{}.csv'.format(args.split_dir, i))
@@ -54,7 +53,6 @@ def main(args):
         
         datasets = (train_dataset, val_dataset, test_dataset)
 
-        # 开始训练
         results, test_auc, val_auc, test_acc, val_acc  = train(datasets, i, args)
 
         all_test_auc.append(test_auc)
@@ -66,7 +64,6 @@ def main(args):
         filename = os.path.join(args.results_dir, 'split_{}_results.pkl'.format(i))
         save_pkl(filename, results)
 
-    # 把每一折的训练和测试情况存入result.csv文件中
     final_df = pd.DataFrame({'folds': folds, 'test_auc': all_test_auc, 
         'val_auc': all_val_auc, 'test_acc': all_test_acc, 'val_acc' : all_val_acc})
 
@@ -76,7 +73,6 @@ def main(args):
         save_name = 'summary.csv'
     final_df.to_csv(os.path.join(args.results_dir, save_name))
 
-# Generic training settings 参数设置
 parser = argparse.ArgumentParser(description='Configurations for WSI Training')
 
 parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/result/features/virchow2',
@@ -87,7 +83,7 @@ parser.add_argument('--lr', type=float, default=0.00001,  # 0.000001
                     
                     help='learning rate (default: 0.001)')
 parser.add_argument('--label_frac', type=float, default=1.0, 
-                    help='fraction of training labels (default: 1.0)')# 划分数据集
+                    help='fraction of training labels (default: 1.0)')
 parser.add_argument('--reg', type=float, default=1e-5,# 1e-5
                     help='weight decay (default: 1e-5)')
 parser.add_argument('--seed', type=int, default=6,# 6
