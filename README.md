@@ -24,7 +24,13 @@ pip install -e .
 
 The MUSK models can be accessed from [HuggingFace Hub](https://huggingface.co/zzhuo-cs/PathMoE/resolve/main/pytorch_model.pt).
 
+## Model Weights Usage
 
+Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the following directory:
+```
+/Checkpoints/le_re/ 
+├── latest_net_G.pth
+```
 
 ## evaluation indicator
 ```
