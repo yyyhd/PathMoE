@@ -95,7 +95,7 @@ if args.fold == -1:
     folds = range(start, end)
 else:
     folds = range(args.fold, args.fold+1)
-# 模型路径
+
 
 ckpt_paths = ['/home/hoo/projects/zzhuo/CLAM_master/results/task_1_pcr_vs_no/s_0_checkpoint.pt']
 datasets_id = {'train': 0, 'val': 1, 'test': 2, 'all': -1}
