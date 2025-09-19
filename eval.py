@@ -109,7 +109,7 @@ if __name__ == "__main__":
             split_dataset = dataset
         else:
             #csv_path = '{}/splits_{}.csv'.format(args.splits_dir, folds[ckpt_idx])
-            csv_path = os.path.join('/home/hoo/projects/zzhuo/CLAM_master/splits/task_1_pcr_vs_no_100', 'splits.csv')
+            csv_path = os.path.join('/home/hoo/projects/zzhuo/CLAM_master/splits/task_1_pcr_vs_no', 'splits.csv')
             # csv_path = os.path.join(args.splits_dir, '1.csv')
             datasets = dataset.return_splits(from_id=False, csv_path=csv_path)
             split_dataset = datasets[datasets_id[args.split]]
