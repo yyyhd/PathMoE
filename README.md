@@ -28,8 +28,8 @@ The MUSK models can be accessed from [HuggingFace Hub](https://huggingface.co/zz
 
 Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the following directory:
 ```
-/Checkpoints/le_re/ 
-├── latest_net_G.pth
+/Checkpoints
+├── pytorch_model.pt
 ```
 
 ## evaluation indicator
