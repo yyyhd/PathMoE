@@ -38,7 +38,7 @@ Preprocess the slides following [CLAM](https://github.com/mahmoodlab/CLAM), incl
 Download the pretrained [Virchow2 model weights](https://huggingface.co/paige-ai/Virchow2), put it to ./weights/ and load the model.
 
 
-## Evaluation indicator
+## Evaluation
 To reproduce the results in our paper, we provide a reproducible result on JCH cohort.
 - First download our processed [JCH cohort](https://pan.baidu.com/s/1JoMIK0xfONqJYBVVLLjK9A?pwd=m7pw) frozen features here
 - Put the extracted features to *./features/*
