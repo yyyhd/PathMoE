@@ -31,10 +31,7 @@ Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the
 /Checkpoints
 ├── pytorch_model.pt
 ```
-The test_error and auc will be printed to the screen.
-```
-test_error:  0.1981981981981982   auc:  0.8565840938722296
-```
+
 
 ## Evaluation indicator
 To reproduce the results in our paper, we provide a reproducible result on JCH cohort.
@@ -43,6 +40,10 @@ To reproduce the results in our paper, we provide a reproducible result on JCH c
 - Run the following command:
 ```
 python eval.py
+```
+The test_error and auc will be printed to the screen.
+```
+test_error:  0.1981981981981982   auc:  0.8565840938722296
 ```
 The evaluation results will be stored at `eval_results/EVAL_first/`
 
