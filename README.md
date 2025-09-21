@@ -35,7 +35,7 @@ Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the
 ### Extract Tiles from Whole Slide Images
 Preprocess the slides following [CLAM](https://github.com/mahmoodlab/CLAM), including foreground tissue segmentation and stitching.
 ### Extract Image Feature Embeddings
-Download the pretrained [Virchow2 model weights](https://huggingface.co/paige-ai/Virchow2), put it to ./weights/ and load the model
+Download the pretrained [Virchow2 model weights](https://huggingface.co/paige-ai/Virchow2), put it to ./weights/ and load the model.
 
 
 ## Evaluation indicator
