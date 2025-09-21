@@ -32,7 +32,7 @@ Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the
 ├── pytorch_model.pt
 ```
 
-## evaluation indicator
+## Evaluation indicator
 ```
 python eval.py
 ```
