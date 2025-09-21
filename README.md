@@ -31,7 +31,7 @@ Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the
 /Checkpoints
 ├── pytorch_model.pt
 ```
-## mage Processing Pipeline
+## Image Processing Pipeline
 ### Extract Tiles from Whole Slide Images
 Preprocess the slides following [CLAM](https://github.com/mahmoodlab/CLAM), including foreground tissue segmentation and stitching.
 ### Extract Image Feature Embeddings
