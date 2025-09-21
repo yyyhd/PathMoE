@@ -31,11 +31,20 @@ Please place the downloaded model weights file (e.g., `pytorch_model.pt`) in the
 /Checkpoints
 ├── pytorch_model.pt
 ```
+The test_error and auc will be printed to the screen.
+```
+test_error:  0.1981981981981982   auc:  0.8565840938722296
+```
 
 ## Evaluation indicator
+To reproduce the results in our paper, we provide a reproducible result on JCH cohort.
+- First download our processed [JCH cohort](https://pan.baidu.com/s/1JoMIK0xfONqJYBVVLLjK9A?pwd=m7pw) frozen features here
+- Put the extracted features to *./features/*
+- Run the following command:
 ```
 python eval.py
 ```
+The evaluation results will be stored at `eval_results/EVAL_first/`
 
 ## Acknowledgements
 The project was built on many amazing open-source repositories: [Virchow2](https://huggingface.co/paige-ai/Virchow2) [CLAM](https://github.com/mahmoodlab/CLAM). We thank the authors and developers for their contributions.
