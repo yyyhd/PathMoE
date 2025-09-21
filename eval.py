@@ -14,21 +14,20 @@ from utils.eval_utils import *
 
 # Training settings
 parser = argparse.ArgumentParser(description='CLAM Evaluation Script')
-parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/Evaluation',
+parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/result/features/JCH',
                     help='data directory')
-parser.add_argument('--results_dir', type=str, default='/home/hoo/projects/zzhuo/CLAM_master/results',
+parser.add_argument('--results_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/results',
                     help='relative path to results folder, i.e. '+
                     'the directory containing models_exp_code relative to project root (default: ./results)')
 parser.add_argument('--save_exp_code', type=str, default='first',
                     help='experiment code to save eval results')
-parser.add_argument('--models_exp_code', type=str, default='task_1_pcr_vs_no_s6',
+parser.add_argument('--models_exp_code', type=str, default='task_pcr_vs_no',
                     help='experiment code to load trained models (directory under results_dir containing model checkpoints')
-parser.add_argument('--splits_dir', type=str, default=None,
+parser.add_argument('--splits_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/splits/task_1_pcr_vs_no',
                     help='splits directory, if using custom splits other than what matches the task (default: None)')
 parser.add_argument('--model_size', type=str, choices=['small', 'big'], default='small', 
                     help='size of model (default: small)')
-parser.add_argument('--model_type', type=str, choices=['clam_sb', 'clam_mb', 'mil'], default='clam_mb',
-                    help='type of model (default: clam_sb)')
+parser.add_argument('--model_type', type=str, choices=['clam', 'PathMoE'], default='PathMoE')
 parser.add_argument('--drop_out', action='store_true', default=0.1,
                     help='whether model uses dropout')
 parser.add_argument('--k', type=int, default=1, help='number of folds (default: 10)')
@@ -39,7 +38,7 @@ parser.add_argument('--micro_average', action='store_true', default=False,
                     help='use micro_average instead of macro_avearge for multiclass AUC')
 parser.add_argument('--split', type=str, choices=['train', 'val', 'test', 'all'], default='test')
 
-parser.add_argument('--task', type=str, default='task_1_pcr_vs_no')
+parser.add_argument('--task', type=str, default='task_pcr_vs_no')
 args = parser.parse_args()
 
 device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -67,7 +66,7 @@ with open(args.save_dir + '/eval_experiment_{}.txt'.format(args.save_exp_code), 
 f.close()
 
 print(settings)
-if args.task == 'task_1_pcr_vs_no':
+if args.task == 'task_pcr_vs_no':
     args.n_classes=2
     dataset = Generic_MIL_Dataset(csv_path = 'dataset_csv/pcr.csv',
                             data_dir= args.data_root_dir,
@@ -95,9 +94,9 @@ if args.fold == -1:
     folds = range(start, end)
 else:
     folds = range(args.fold, args.fold+1)
+# 模型路径
 
-
-ckpt_paths = ['/home/hoo/projects/zzhuo/CLAM_master/Checkpoints/pytorch_model.pt']
+ckpt_paths = ['/home/hoo/projects/zzhuo/PathMoE/Checkpoints/pytorch_model.pt']
 datasets_id = {'train': 0, 'val': 1, 'test': 2, 'all': -1}
 
 if __name__ == "__main__":
@@ -108,9 +107,9 @@ if __name__ == "__main__":
         if datasets_id[args.split] < 0:
             split_dataset = dataset
         else:
-            #csv_path = '{}/splits_{}.csv'.format(args.splits_dir, folds[ckpt_idx])
-            csv_path = os.path.join('/home/hoo/projects/zzhuo/CLAM_master/splits/task_1_pcr_vs_no', 'splits.csv')
-            # csv_path = os.path.join(args.splits_dir, '1.csv')
+            
+            csv_path = os.path.join('/home/hoo/projects/zzhuo/PathMoE/splits/task_1_pcr_vs_no', 'splits_0.csv')
+            
             datasets = dataset.return_splits(from_id=False, csv_path=csv_path)
             split_dataset = datasets[datasets_id[args.split]]
         model, patient_results, test_error, auc, df  = eval(split_dataset, args, ckpt_paths[ckpt_idx])
