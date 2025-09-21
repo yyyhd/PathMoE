@@ -53,7 +53,7 @@ test_error:  0.1981981981981982   auc:  0.8565840938722296
 The evaluation results will be stored at `eval_results/EVAL_first/`
 
 ## Acknowledgements
-The project was built on many amazing open-source repositories: [Virchow2](https://huggingface.co/paige-ai/Virchow2) [CLAM](https://github.com/mahmoodlab/CLAM). We thank the authors and developers for their contributions.
+The project was built on many amazing open-source repositories: [Virchow2](https://huggingface.co/paige-ai/Virchow2) and [CLAM](https://github.com/mahmoodlab/CLAM). We thank the authors and developers for their contributions.
 
 
 ## Issues
