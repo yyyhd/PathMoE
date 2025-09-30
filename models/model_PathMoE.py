@@ -203,19 +203,19 @@ class CLAM(nn.Module):
         attention_scores = self.attention(combined_features)
         attention_weights = F.softmax(attention_scores, dim=1)
 
-
+        # 使用注意力权重加权各自特征
         h1_features = attention_weights[:, 0].unsqueeze(1) * h1
         h2_features = attention_weights[:, 1].unsqueeze(1) * h2
         h3_features = attention_weights[:, 2].unsqueeze(1) * h3
         h4_features = attention_weights[:, 3].unsqueeze(1) * h4
 
 
-
+        # 将加权特征相加得到最终融合特征
         M = h1_features + h2_features + h3_features + h4_features
 
         logits = self.classifiers(M)
-        Y_hat = torch.topk(logits, 1, dim = 1)[1] 
-        Y_prob = F.softmax(logits, dim = 1) 
+        Y_hat = torch.topk(logits, 1, dim = 1)[1] # 预测标签
+        Y_prob = F.softmax(logits, dim = 1) # 预测概率
         if instance_eval:
             results_dict = {'instance_loss': total_inst_loss, 'inst_labels': np.array(all_targets), 
             'inst_preds': np.array(all_preds)}
@@ -301,7 +301,7 @@ class PathMoE(CLAM):
 
     def forward(self, h1, h2, h3, h4, h5, label=None, instance_eval=False, return_features=False, attention_only=False):
         device = h1.device
-        # print("h1 shape:", h1.shape)
+
      
         
 
@@ -400,7 +400,10 @@ class PathMoE(CLAM):
         Y_hat = torch.topk(logits, 1, dim = 1)[1]
 
         Y_prob = F.softmax(logits, dim = 1)
-    
+
+
+       
+        
 
         losses = []
         for g in range(5):
