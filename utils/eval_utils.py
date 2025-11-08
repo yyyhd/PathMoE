@@ -8,7 +8,7 @@ from models.model_PathMoE import CLAM, PathMoE
 import pdb
 import os
 import pandas as pd
-from utils.utils5 import *
+from utils.utils import *
 from utils.core_utils import Accuracy_Logger
 from sklearn.metrics import roc_auc_score, roc_curve, auc
 from sklearn.preprocessing import label_binarize
