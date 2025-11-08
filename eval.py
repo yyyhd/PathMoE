@@ -50,8 +50,7 @@ os.makedirs(args.save_dir, exist_ok=True)
 if args.splits_dir is None:
     args.splits_dir = args.models_dir
 
-assert os.path.isdir(args.models_dir)
-assert os.path.isdir(args.splits_dir)
+
 
 settings = {'task': args.task,
             'split': args.split,
@@ -108,7 +107,7 @@ if __name__ == "__main__":
             split_dataset = dataset
         else:
             
-            csv_path = os.path.join('/home/hoo/projects/zzhuo/PathMoE/splits/task_1_pcr_vs_no', 'splits_0.csv')
+            csv_path = os.path.join('/home/hoo/projects/zzhuo/PathMoE/splits/task_pcr_vs_no', 'splits_0.csv')
             
             datasets = dataset.return_splits(from_id=False, csv_path=csv_path)
             split_dataset = datasets[datasets_id[args.split]]
