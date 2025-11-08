@@ -23,7 +23,7 @@ parser.add_argument('--save_exp_code', type=str, default='first',
                     help='experiment code to save eval results')
 parser.add_argument('--models_exp_code', type=str, default='task_pcr_vs_no',
                     help='experiment code to load trained models (directory under results_dir containing model checkpoints')
-parser.add_argument('--splits_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/splits/task_1_pcr_vs_no',
+parser.add_argument('--splits_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/splits/task_pcr_vs_no',
                     help='splits directory, if using custom splits other than what matches the task (default: None)')
 parser.add_argument('--model_size', type=str, choices=['small', 'big'], default='small', 
                     help='size of model (default: small)')
@@ -107,7 +107,7 @@ if __name__ == "__main__":
             split_dataset = dataset
         else:
             
-            csv_path = os.path.join('/home/hoo/projects/zzhuo/PathMoE/splits/task_pcr_vs_no', 'splits_0.csv')
+            csv_path = os.path.join(splits_dir, 'splits_0.csv')
             
             datasets = dataset.return_splits(from_id=False, csv_path=csv_path)
             split_dataset = datasets[datasets_id[args.split]]
