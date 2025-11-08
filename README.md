@@ -7,7 +7,7 @@ First clone the repo and cd into the directory:
 
 ```bash
 git clone https://github.com/yyyhd/PathMoE
-cd PathMoE
+cd PathMoE-main
 ```
 Create a new enviroment with anaconda.
 

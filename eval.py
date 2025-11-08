@@ -14,16 +14,16 @@ from utils.eval_utils import *
 
 # Training settings
 parser = argparse.ArgumentParser(description='CLAM Evaluation Script')
-parser.add_argument('--data_root_dir', type=str, default='/home/hoo/projects/zzhuo/result/features/JCH',
+parser.add_argument('--data_root_dir', type=str, default=r"./features",
                     help='data directory')
-parser.add_argument('--results_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/results',
+parser.add_argument('--results_dir', type=str, default='./results',
                     help='relative path to results folder, i.e. '+
                     'the directory containing models_exp_code relative to project root (default: ./results)')
 parser.add_argument('--save_exp_code', type=str, default='first',
                     help='experiment code to save eval results')
 parser.add_argument('--models_exp_code', type=str, default='task_pcr_vs_no',
                     help='experiment code to load trained models (directory under results_dir containing model checkpoints')
-parser.add_argument('--splits_dir', type=str, default='/home/hoo/projects/zzhuo/PathMoE/splits/task_pcr_vs_no',
+parser.add_argument('--splits_dir', type=str, default='./splits/task_pcr_vs_no',
                     help='splits directory, if using custom splits other than what matches the task (default: None)')
 parser.add_argument('--model_size', type=str, choices=['small', 'big'], default='small', 
                     help='size of model (default: small)')
@@ -50,7 +50,8 @@ os.makedirs(args.save_dir, exist_ok=True)
 if args.splits_dir is None:
     args.splits_dir = args.models_dir
 
-
+# assert os.path.isdir(args.models_dir)
+# assert os.path.isdir(args.splits_dir)
 
 settings = {'task': args.task,
             'split': args.split,
@@ -95,7 +96,7 @@ else:
     folds = range(args.fold, args.fold+1)
 # 模型路径
 
-ckpt_paths = ['/home/hoo/projects/zzhuo/PathMoE/Checkpoints/pytorch_model.pt']
+ckpt_paths = ['./Checkpoints/pytorch_model.pt']
 datasets_id = {'train': 0, 'val': 1, 'test': 2, 'all': -1}
 
 if __name__ == "__main__":
@@ -107,7 +108,7 @@ if __name__ == "__main__":
             split_dataset = dataset
         else:
             
-            csv_path = os.path.join(splits_dir, 'splits_0.csv')
+            csv_path = os.path.join(os.path.normpath(args.splits_dir), 'splits_0.csv')
             
             datasets = dataset.return_splits(from_id=False, csv_path=csv_path)
             split_dataset = datasets[datasets_id[args.split]]

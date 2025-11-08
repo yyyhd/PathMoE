@@ -197,7 +197,7 @@ def train(datasets, cur, args):
         val_lable = []
         
         if args.model_type in ['clam', 'PathMoE'] and not args.no_inst_cluster:
-            train_name, train_score, train_lables = train_loop_clam(i, train_name_list, train_score,
+            train_name, train_score, train_lables = train_loop(i, train_name_list, train_score,
                                                                      train_lable, epoch,
                                                                      model, train_loader, optimizer,
                                                                      args.n_classes, args.bag_weight,
@@ -215,7 +215,7 @@ def train(datasets, cur, args):
             
             csv.set_index(['id'], inplace=True)
             csv.to_csv(os.path.join(args.result_dir,'train_result.csv'))
-            stop, val_name, val_score, val_lables = validate_clam(val_name_list, val_score, 
+            stop, val_name, val_score, val_lables = validate_(val_name_list, val_score, 
                                                                      val_lable, cur, epoch, model,
                                                                      val_loader, args.n_classes,
                                                                      early_stopping, writer, loss_fn,
@@ -323,7 +323,7 @@ def train(datasets, cur, args):
     return results_dict, test_auc, val_auc, 1 - test_error, 1 - val_error
 
 
-def train_loop_clam(i, name_list, score_list, label_list, epoch, model, loader, optimizer, n_classes, bag_weight, writer = None, loss_fn = None):
+def train_loop(i, name_list, score_list, label_list, epoch, model, loader, optimizer, n_classes, bag_weight, writer = None, loss_fn = None):
 
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -538,7 +538,7 @@ def validate(name_list, score_list, label_list, cur, epoch, model, loader, n_cla
 
     return False, name_list, score_list, label_list
 
-def validate_clam(name_list, score_list, label_list, cur, epoch, model, loader, n_classes, early_stopping = None, writer = None, loss_fn = None, results_dir = None):
+def validate_(name_list, score_list, label_list, cur, epoch, model, loader, n_classes, early_stopping = None, writer = None, loss_fn = None, results_dir = None):
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model.eval()
     acc_logger = Accuracy_Logger(n_classes=n_classes)
